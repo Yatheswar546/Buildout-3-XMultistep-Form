@@ -42,24 +42,26 @@ const addons = {
 function showStep(step) {
     currentStep = step;
 
+    // Show the active panel and hide the others
     panels.forEach((panel) => {
         const active = Number(panel.dataset.panel) === step;
 
         panel.hidden = !active;
         panel.classList.toggle("active", active);
-
-        // Remove the selector from every Next Step button first.
-        panel.querySelectorAll(".next-step").forEach((button) => {
-            button.removeAttribute("id");
-        });
     });
 
+    // Update step indicators
     indicators.forEach((indicator) => {
         const number = Number(indicator.dataset.step);
         indicator.classList.toggle("active", number === step);
     });
 
-    // Give the active step's Next Step button the required ID.
+    // Remove the ID from every Next Step button
+    document.querySelectorAll(".next-step").forEach((button) => {
+        button.removeAttribute("id");
+    });
+
+    // Assign the ID only to the active step's Next Step button
     const activePanel = panels.find(
         (panel) => Number(panel.dataset.panel) === step
     );
