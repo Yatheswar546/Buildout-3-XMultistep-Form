@@ -33,6 +33,7 @@
 
         <section class="form-area">
             <form id="multi-step-form" novalidate>
+
                 <!-- Step 1: Personal Information -->
                 <section class="form-step active" data-panel="1">
                     <header class="section-header">
@@ -45,8 +46,13 @@
                             <label for="userName">Name</label>
                             <span class="error-message" id="name-error"></span>
                         </div>
-                        <input id="userName" name="userName" type="text"
-                               placeholder="e.g. Stephen King" autocomplete="name">
+                        <input
+                            id="userName"
+                            name="userName"
+                            type="text"
+                            placeholder="e.g. Stephen King"
+                            autocomplete="name"
+                        >
                     </div>
 
                     <div class="field">
@@ -54,8 +60,13 @@
                             <label for="email">Email Address</label>
                             <span class="error-message" id="email-error"></span>
                         </div>
-                        <input id="email" name="email" type="email"
-                               placeholder="e.g. stephenking@lorem.com" autocomplete="email">
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="e.g. stephenking@lorem.com"
+                            autocomplete="email"
+                        >
                     </div>
 
                     <div class="field">
@@ -63,12 +74,21 @@
                             <label for="phone">Phone Number</label>
                             <span class="error-message" id="phone-error"></span>
                         </div>
-                        <input id="phone" name="phone" type="tel"
-                               placeholder="e.g. 7894561230" autocomplete="tel">
+                        <input
+                            id="phone"
+                            name="phone"
+                            type="tel"
+                            placeholder="e.g. 7894561230"
+                            autocomplete="tel"
+                        >
                     </div>
 
                     <div class="form-navigation first-navigation">
-                        <button type="button" id="next-button" class="primary-button next-step">
+                        <button
+                            type="button"
+                            id="next-button"
+                            class="primary-button next-step"
+                        >
                             Next Step
                         </button>
                     </div>
@@ -82,8 +102,12 @@
                     </header>
 
                     <div class="plan-grid" role="radiogroup" aria-label="Select your plan">
-                        <button type="button" class="plan_card" data-plan="Arcade"
-                                aria-pressed="false">
+                        <button
+                            type="button"
+                            class="plan_card"
+                            data-plan="Arcade"
+                            aria-pressed="false"
+                        >
                             <img src="./images/icon-arcade.svg" alt="">
                             <span class="plan-card-info">
                                 <strong>Arcade</strong>
@@ -92,8 +116,12 @@
                             </span>
                         </button>
 
-                        <button type="button" class="plan_card" data-plan="Advance"
-                                aria-pressed="false">
+                        <button
+                            type="button"
+                            class="plan_card"
+                            data-plan="Advance"
+                            aria-pressed="false"
+                        >
                             <img src="./images/icon-advanced.svg" alt="">
                             <span class="plan-card-info">
                                 <strong>Advance</strong>
@@ -102,8 +130,12 @@
                             </span>
                         </button>
 
-                        <button type="button" class="plan_card" data-plan="Pro"
-                                aria-pressed="false">
+                        <button
+                            type="button"
+                            class="plan_card"
+                            data-plan="Pro"
+                            aria-pressed="false"
+                        >
                             <img src="./images/icon-pro.svg" alt="">
                             <span class="plan-card-info">
                                 <strong>Pro</strong>
@@ -117,17 +149,26 @@
 
                     <div class="billing-toggle">
                         <span id="monthly-label" class="billing-label selected">Monthly</span>
-                        <button type="button" id="billing-switch" class="switch"
-                                role="switch" aria-checked="false"
-                                aria-label="Switch between monthly and yearly billing">
+
+                        <button
+                            type="button"
+                            id="billing-switch"
+                            class="switch"
+                            role="switch"
+                            aria-checked="false"
+                            aria-label="Switch between monthly and yearly billing"
+                        >
                             <span></span>
                         </button>
+
                         <span id="yearly-label" class="billing-label">Yearly</span>
                     </div>
 
                     <div class="form-navigation">
                         <button type="button" class="back-button">Go Back</button>
-                        <button type="button" class="primary-button next-step">Next Step</button>
+                        <button type="button" class="primary-button next-step">
+                            Next Step
+                        </button>
                     </div>
                 </section>
 
@@ -146,7 +187,9 @@
                                 <strong>Online Services</strong>
                                 <small>Access to multiplayer games</small>
                             </span>
-                            <span class="addon-price" data-monthly="1" data-yearly="10">+$1/mo</span>
+                            <span class="addon-price" data-monthly="1" data-yearly="10">
+                                +$1/mo
+                            </span>
                         </label>
 
                         <label class="addon_card">
@@ -156,7 +199,9 @@
                                 <strong>Larger Storage</strong>
                                 <small>Extra 1TB of cloud save</small>
                             </span>
-                            <span class="addon-price" data-monthly="2" data-yearly="20">+$2/mo</span>
+                            <span class="addon-price" data-monthly="2" data-yearly="20">
+                                +$2/mo
+                            </span>
                         </label>
 
                         <label class="addon_card">
@@ -166,13 +211,17 @@
                                 <strong>Customizable Profile</strong>
                                 <small>Custom theme on your profile</small>
                             </span>
-                            <span class="addon-price" data-monthly="2" data-yearly="20">+$2/mo</span>
+                            <span class="addon-price" data-monthly="2" data-yearly="20">
+                                +$2/mo
+                            </span>
                         </label>
                     </div>
 
                     <div class="form-navigation">
                         <button type="button" class="back-button">Go Back</button>
-                        <button type="button" class="primary-button next-step">Next Step</button>
+                        <button type="button" class="primary-button next-step">
+                            Next Step
+                        </button>
                     </div>
                 </section>
 
@@ -202,17 +251,24 @@
 
                     <div class="form-navigation">
                         <button type="button" class="back-button">Go Back</button>
-                        <button type="button" id="confirm-button" class="primary-button">
+                        <button
+                            type="button"
+                            id="confirm-button"
+                            class="primary-button next-step"
+                        >
                             Confirm
                         </button>
                     </div>
                 </section>
 
-                <!-- Thank You -->
+                <!-- Step 5: Thank You -->
                 <section class="form-step thank-you-step" data-panel="5" hidden>
                     <div class="thank-you-content">
-                        <img src="./images/icon-thank-you.svg" alt=""
-                             class="thank-you-icon">
+                        <img
+                            src="./images/icon-thank-you.svg"
+                            alt=""
+                            class="thank-you-icon"
+                        >
                         <h1>Thank You!</h1>
                         <p>
                             Thanks for confirming your subscription! We hope you have fun
@@ -221,15 +277,16 @@
                         </p>
                     </div>
                 </section>
+
             </form>
         </section>
     </main>
 
     <footer class="attribution">
-        Challenge by <a href="https://www.crio.do" target="_blank"
-                        rel="noopener noreferrer">Crio.Do</a>.
-        Coded by <a href="https://www.github.com/Yatheswar546" target="_blank"
-                    rel="noopener noreferrer">Yatheswar</a>.
+        Challenge by
+        <a href="https://www.crio.do" target="_blank" rel="noopener noreferrer">Crio.Do</a>.
+        Coded by
+        <a href="https://www.github.com/Yatheswar546" target="_blank" rel="noopener noreferrer">Yatheswar</a>.
     </footer>
 
     <script src="./script.js"></script>

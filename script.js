@@ -7,8 +7,6 @@ const nameInput = document.querySelector('input[name="userName"]');
 const emailInput = document.querySelector('input[name="email"]');
 const phoneInput = document.querySelector('input[name="phone"]');
 
-const nextButton = document.getElementById("next-button");
-const confirmButton = document.getElementById("confirm-button");
 const billingSwitch = document.getElementById("billing-switch");
 
 let currentStep = 1;
@@ -39,10 +37,10 @@ const addons = {
     }
 };
 
+// Show the requested step and assign the test-required button ID.
 function showStep(step) {
     currentStep = step;
 
-    // Show the active panel and hide the others
     panels.forEach((panel) => {
         const active = Number(panel.dataset.panel) === step;
 
@@ -50,18 +48,16 @@ function showStep(step) {
         panel.classList.toggle("active", active);
     });
 
-    // Update step indicators
     indicators.forEach((indicator) => {
         const number = Number(indicator.dataset.step);
         indicator.classList.toggle("active", number === step);
     });
 
-    // Remove the ID from every Next Step button
+    // Ensure only the active step's Next/Confirm button has this ID.
     document.querySelectorAll(".next-step").forEach((button) => {
         button.removeAttribute("id");
     });
 
-    // Assign the ID only to the active step's Next Step button
     const activePanel = panels.find(
         (panel) => Number(panel.dataset.panel) === step
     );
@@ -130,8 +126,9 @@ function validatePersonalInfo() {
     setError(phoneInput, phoneError, message);
 
     if (!valid) {
-        const firstInvalid = [nameInput, emailInput, phoneInput]
-            .find((input) => input.classList.contains("invalid"));
+        const firstInvalid = [nameInput, emailInput, phoneInput].find(
+            (input) => input.classList.contains("invalid")
+        );
 
         firstInvalid?.focus();
     }
@@ -139,6 +136,7 @@ function validatePersonalInfo() {
     return valid;
 }
 
+// Update inline validation messages as the user types.
 [nameInput, emailInput, phoneInput].forEach((input) => {
     input.addEventListener("input", () => {
         if (input === nameInput) {
@@ -151,10 +149,11 @@ function validatePersonalInfo() {
 
         if (input === emailInput) {
             let message = "";
+            const email = input.value.trim();
 
-            if (!input.value.trim()) {
+            if (!email) {
                 message = "Enter email";
-            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim())) {
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                 message = "Enter a valid email address";
             }
 
@@ -163,10 +162,11 @@ function validatePersonalInfo() {
 
         if (input === phoneInput) {
             let message = "";
+            const phone = input.value.trim();
 
-            if (!input.value.trim()) {
+            if (!phone) {
                 message = "Enter your mobile number";
-            } else if (!/^[+\d][\d\s()-]{6,19}$/.test(input.value.trim())) {
+            } else if (!/^[+\d][\d\s()-]{6,19}$/.test(phone)) {
                 message = "Enter a valid mobile number";
             }
 
@@ -194,6 +194,7 @@ function selectPlan(planName) {
 
     document.querySelectorAll(".plan_card").forEach((card) => {
         const selected = card.dataset.plan === planName;
+
         card.classList.toggle("selected", selected);
         card.setAttribute("aria-pressed", String(selected));
     });
@@ -228,6 +229,7 @@ function updateBillingDisplay() {
 
     document.querySelectorAll(".addon_card").forEach((card) => {
         const priceElement = card.querySelector(".addon-price");
+
         const price = Number(
             isYearly
                 ? priceElement.dataset.yearly
@@ -288,7 +290,8 @@ function updateSummary() {
         name.textContent = addon.name;
 
         const price = document.createElement("strong");
-        price.textContent = `+$${getAddonPrice(addon)}/${isYearly ? "yr" : "mo"}`;
+        price.textContent =
+            `+$${getAddonPrice(addon)}/${isYearly ? "yr" : "mo"}`;
 
         row.append(name, price);
         summaryAddons.appendChild(row);
@@ -313,6 +316,7 @@ function validatePlan() {
     return true;
 }
 
+// Handle Next Step and Confirm using the current step.
 function goNext() {
     if (currentStep === 1) {
         if (validatePersonalInfo()) {
@@ -330,15 +334,20 @@ function goNext() {
 
     if (currentStep === 3) {
         showStep(4);
+        return;
+    }
+
+    if (currentStep === 4) {
+        showStep(5);
     }
 }
 
-nextButton.addEventListener("click", goNext);
-
+// Register the navigation handler exactly once per button.
 document.querySelectorAll(".next-step").forEach((button) => {
     button.addEventListener("click", goNext);
 });
 
+// Back navigation.
 document.querySelectorAll(".back-button").forEach((button) => {
     button.addEventListener("click", () => {
         if (currentStep > 1 && currentStep <= 4) {
@@ -347,13 +356,11 @@ document.querySelectorAll(".back-button").forEach((button) => {
     });
 });
 
+// Allow users to change their selected plan from the summary.
 document.querySelector(".change-plan").addEventListener("click", () => {
     showStep(2);
 });
 
-confirmButton.addEventListener("click", () => {
-    showStep(5);
-});
-
+// Initial billing display and initial form step.
 updateBillingDisplay();
 showStep(1);
