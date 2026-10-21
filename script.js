@@ -1,4 +1,3 @@
-
 const form = document.getElementById("multi-step-form");
 const panels = [...document.querySelectorAll(".form-step")];
 const indicators = [...document.querySelectorAll(".step-indicator")];
@@ -314,9 +313,9 @@ function goNext() {
     }
 }
 
-// nextButton.addEventListener("click", goNext);
+nextButton.addEventListener("click", goNext);
 
-document.querySelectorAll("#next-button").forEach((button) => {
+document.querySelectorAll(".next-step").forEach((button) => {
     button.addEventListener("click", goNext);
 });
 
