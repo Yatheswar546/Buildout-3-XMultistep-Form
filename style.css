@@ -1,0 +1,802 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+
+:root {
+    --navy: #02295a;
+    --purple: #483eff;
+    --light-blue: #bfe2fd;
+    --pale-blue: #f0f6ff;
+    --muted: #9699ab;
+    --border: #d6d9e6;
+    --white: #ffffff;
+    --error: #ed3548;
+    --pink: #f9818e;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    padding: 24px 16px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--pale-blue);
+    color: var(--navy);
+    font-family: "Ubuntu", sans-serif;
+    font-size: 14px;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.app {
+    display: flex;
+    width: min(940px, 100%);
+    min-height: 600px;
+    padding: 16px;
+    gap: 70px;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 10px 35px rgba(2, 41, 90, 0.04);
+}
+
+.sidebar {
+    position: relative;
+    isolation: isolate;
+    flex: 0 0 274px;
+    min-height: 568px;
+    overflow: hidden;
+    padding: 36px 28px;
+    border-radius: 9px;
+    background-color: var(--purple);
+    background-image: url("assets/images/bg-sidebar-desktop.svg");
+    background-position: center bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.steps {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.step-indicator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.step-number {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    place-items: center;
+    border: 1px solid #d6d9ff;
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 12px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.step-indicator.active .step-number {
+    border-color: var(--light-blue);
+    background: var(--light-blue);
+    color: var(--navy);
+    font-weight: 700;
+}
+
+.step-label {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.step-label small {
+    color: #d6d9ff;
+    font-size: 11px;
+}
+
+.step-label strong {
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.form-area {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    padding: 30px 24px 12px 0;
+}
+
+#multi-step-form {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.form-step {
+    width: 100%;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+}
+
+.form-step.active {
+    display: flex;
+}
+
+.form-step[hidden] {
+    display: none !important;
+}
+
+.section-header {
+    margin-bottom: 30px;
+}
+
+.section-header h1,
+.thank-you-content h1 {
+    margin-bottom: 7px;
+    color: var(--navy);
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.section-header p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.45;
+}
+
+.field {
+    margin-bottom: 22px;
+}
+
+.field-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.field-heading label {
+    color: var(--navy);
+    font-size: 13px;
+}
+
+.error-message {
+    color: var(--error);
+    font-size: 12px;
+}
+
+.field input {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    outline: none;
+    background: var(--white);
+    color: var(--navy);
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.field input::placeholder {
+    color: #9699ab;
+}
+
+.field input:hover,
+.field input:focus {
+    border-color: var(--purple);
+}
+
+.field input:focus-visible {
+    box-shadow: 0 0 0 3px rgba(72, 62, 255, 0.12);
+}
+
+.field input.invalid {
+    border-color: var(--error);
+}
+
+.form-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: auto;
+    padding-top: 32px;
+}
+
+.first-navigation {
+    justify-content: flex-end;
+    margin-top: auto;
+}
+
+.primary-button {
+    min-height: 44px;
+    padding: 0 24px;
+    border: 0;
+    border-radius: 5px;
+    background: var(--navy);
+    color: var(--white);
+    font-weight: 500;
+    transition: background-color 0.2s, transform 0.15s;
+}
+
+.primary-button:hover {
+    background: #164a8a;
+}
+
+.primary-button:active {
+    transform: translateY(1px);
+}
+
+.primary-button:focus-visible,
+.back-button:focus-visible,
+.change-plan:focus-visible,
+.switch:focus-visible {
+    outline: 3px solid rgba(72, 62, 255, 0.35);
+    outline-offset: 3px;
+}
+
+.back-button {
+    padding: 10px 0;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.back-button:hover {
+    color: var(--navy);
+}
+
+.plan-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.plan_card {
+    display: flex;
+    min-height: 170px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 18px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--navy);
+    text-align: left;
+    transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+}
+
+.plan_card img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+.plan_card:hover {
+    border-color: var(--purple);
+}
+
+.plan_card:focus-visible {
+    outline: 3px solid rgba(72, 62, 255, 0.3);
+    outline-offset: 2px;
+}
+
+.plan_card.selected {
+    border-color: var(--purple);
+    background: var(--pale-blue);
+    box-shadow: 0 0 0 1px var(--purple);
+}
+
+.plan-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.plan-card-info strong {
+    font-size: 15px;
+}
+
+.plan-price,
+.yearly-benefit {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.yearly-benefit {
+    color: var(--navy);
+    font-size: 11px;
+}
+
+.plan-error {
+    min-height: 16px;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.billing-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 28px;
+    padding: 14px;
+    border-radius: 5px;
+    background: var(--pale-blue);
+}
+
+.billing-label {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.billing-label.selected {
+    color: var(--navy);
+    font-weight: 700;
+}
+
+.switch {
+    display: flex;
+    width: 42px;
+    height: 22px;
+    align-items: center;
+    padding: 3px;
+    border: 0;
+    border-radius: 20px;
+    background: var(--navy);
+}
+
+.switch span {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--white);
+    transition: transform 0.2s;
+}
+
+.switch[aria-checked="true"] span {
+    transform: translateX(20px);
+}
+
+.addon-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.addon_card {
+    display: flex;
+    min-height: 76px;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.addon_card:hover {
+    border-color: var(--purple);
+}
+
+.addon_card:has(input:checked) {
+    border-color: var(--purple);
+    background: var(--pale-blue);
+}
+
+.addon_card input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.custom-checkbox {
+    display: grid;
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--white);
+}
+
+.addon_card input:checked + .custom-checkbox {
+    border-color: var(--purple);
+    background: var(--purple);
+}
+
+.addon_card input:checked + .custom-checkbox::after {
+    width: 8px;
+    height: 5px;
+    border-bottom: 2px solid var(--white);
+    border-left: 2px solid var(--white);
+    content: "";
+    transform: translateY(-1px) rotate(-45deg);
+}
+
+.addon_card input:focus-visible + .custom-checkbox {
+    outline: 3px solid rgba(72, 62, 255, 0.3);
+    outline-offset: 3px;
+}
+
+.addon-info {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.addon-info strong {
+    font-size: 14px;
+}
+
+.addon-info small {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.addon-price {
+    flex-shrink: 0;
+    color: var(--purple);
+    font-size: 12px;
+}
+
+.summary-box {
+    padding: 22px;
+    border-radius: 8px;
+    background: var(--pale-blue);
+}
+
+.summary-plan {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 18px;
+}
+
+.summary-plan > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.summary-plan strong {
+    font-size: 16px;
+}
+
+.change-plan {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    text-decoration: underline;
+}
+
+.change-plan:hover {
+    color: var(--purple);
+}
+
+.summary-addons {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+}
+
+.summary-addon-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    color: var(--muted);
+}
+
+.summary-addon-row strong {
+    color: var(--navy);
+    font-weight: 500;
+}
+
+.summary-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 24px 22px;
+    color: var(--muted);
+}
+
+.summary-total strong {
+    color: var(--purple);
+    font-size: 18px;
+}
+
+.thank-you-step {
+    justify-content: center;
+}
+
+.thank-you-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto 0;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.thank-you-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 28px;
+}
+
+.thank-you-content h1 {
+    margin-bottom: 14px;
+    font-size: 30px;
+}
+
+.thank-you-content p {
+    max-width: 430px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.attribution {
+    margin-top: 24px;
+    color: var(--navy);
+    font-size: 11px;
+    text-align: center;
+}
+
+.attribution a {
+    color: var(--purple);
+}
+
+.attribution a:hover {
+    color: #164a8a;
+}
+
+@media (max-width: 700px) {
+    body {
+        display: block;
+        padding: 0;
+    }
+
+    .app {
+        position: relative;
+        display: block;
+        width: 100%;
+        min-height: 100vh;
+        padding: 0;
+        overflow: hidden;
+        border-radius: 0;
+        background: var(--pale-blue);
+        box-shadow: none;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: 200px;
+        min-height: 200px;
+        padding: 32px 20px 70px;
+        border-radius: 0;
+        background-image: url("assets/images/bg-sidebar-mobile.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    .steps {
+        flex-direction: row;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .step-indicator {
+        gap: 0;
+    }
+
+    .step-number {
+        width: 36px;
+        height: 36px;
+    }
+
+    .step-label {
+        display: none;
+    }
+
+    .form-area {
+        position: relative;
+        width: calc(100% - 32px);
+        min-height: 350px;
+        margin: -66px auto 0;
+        padding: 28px 22px;
+        border-radius: 10px;
+        background: var(--white);
+        box-shadow: 0 8px 25px rgba(2, 41, 90, 0.05);
+    }
+
+    .section-header {
+        margin-bottom: 24px;
+    }
+
+    .section-header h1,
+    .thank-you-content h1 {
+        font-size: 24px;
+    }
+
+    .section-header p {
+        font-size: 14px;
+    }
+
+    .field {
+        margin-bottom: 20px;
+    }
+
+    .field input {
+        height: 44px;
+    }
+
+    .plan-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .plan_card {
+        min-height: 78px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 14px;
+        padding: 12px;
+    }
+
+    .plan-card-info {
+        gap: 4px;
+    }
+
+    .billing-toggle {
+        margin-top: auto;
+        padding: 14px 8px;
+    }
+
+    .addon-list {
+        gap: 12px;
+    }
+
+    .addon_card {
+        min-height: 76px;
+        gap: 10px;
+        padding: 12px 10px;
+    }
+
+    .addon-info strong {
+        font-size: 13px;
+    }
+
+    .addon-info small {
+        font-size: 11px;
+    }
+
+    .addon-price {
+        font-size: 11px;
+    }
+
+    .form-navigation {
+        margin-top: 24px;
+        padding-top: 20px;
+    }
+
+    .first-navigation {
+        margin-top: auto;
+    }
+
+    .primary-button {
+        min-height: 42px;
+        padding: 0 18px;
+        font-size: 13px;
+    }
+
+    .summary-box {
+        padding: 16px;
+    }
+
+    .summary-plan strong {
+        font-size: 14px;
+    }
+
+    .summary-total {
+        padding: 20px 12px;
+        font-size: 13px;
+    }
+
+    .summary-total strong {
+        font-size: 16px;
+    }
+
+    .thank-you-step {
+        min-height: 300px;
+    }
+
+    .thank-you-content {
+        padding: 24px 0;
+    }
+
+    .thank-you-icon {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 24px;
+    }
+
+    .thank-you-content p {
+        font-size: 14px;
+    }
+
+    .attribution {
+        margin: 18px 12px;
+        padding-bottom: 12px;
+    }
+}
+
+@media (max-width: 360px) {
+    .steps {
+        gap: 10px;
+    }
+
+    .step-number {
+        width: 32px;
+        height: 32px;
+    }
+
+    .form-area {
+        width: calc(100% - 24px);
+        padding: 24px 16px;
+    }
+
+    .field-heading {
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .error-message {
+        font-size: 11px;
+        text-align: right;
+    }
+
+    .addon_card {
+        gap: 8px;
+    }
+}
