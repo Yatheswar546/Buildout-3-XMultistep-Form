@@ -314,9 +314,9 @@ function goNext() {
     }
 }
 
-nextButton.addEventListener("click", goNext);
+// nextButton.addEventListener("click", goNext);
 
-document.querySelectorAll(".next-step").forEach((button) => {
+document.querySelectorAll("#next-button").forEach((button) => {
     button.addEventListener("click", goNext);
 });
 
