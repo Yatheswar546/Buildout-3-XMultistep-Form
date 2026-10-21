@@ -1,3 +1,4 @@
+
 const form = document.getElementById("multi-step-form");
 const panels = [...document.querySelectorAll(".form-step")];
 const indicators = [...document.querySelectorAll(".step-indicator")];
@@ -43,14 +44,31 @@ function showStep(step) {
 
     panels.forEach((panel) => {
         const active = Number(panel.dataset.panel) === step;
+
         panel.hidden = !active;
         panel.classList.toggle("active", active);
+
+        // Remove the selector from every Next Step button first.
+        panel.querySelectorAll(".next-step").forEach((button) => {
+            button.removeAttribute("id");
+        });
     });
 
     indicators.forEach((indicator) => {
         const number = Number(indicator.dataset.step);
         indicator.classList.toggle("active", number === step);
     });
+
+    // Give the active step's Next Step button the required ID.
+    const activePanel = panels.find(
+        (panel) => Number(panel.dataset.panel) === step
+    );
+
+    const activeNextButton = activePanel?.querySelector(".next-step");
+
+    if (activeNextButton) {
+        activeNextButton.id = "next-button";
+    }
 
     if (step === 4) {
         updateSummary();
